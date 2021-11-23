@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import services.UnityService;
 
 public class MainViewController implements Initializable {
 
@@ -26,8 +28,8 @@ public class MainViewController implements Initializable {
 	private MenuItem menuItemAbout;
 
 	@FXML
-	public void onMenuItemUnity() {
-		loadView("/gui/UnityList.fxml");
+	public void onMenuItemUnity() throws ParseException {
+		loadView2("/gui/UnityList.fxml");
 	}
 
 	@FXML
@@ -57,6 +59,28 @@ public class MainViewController implements Initializable {
 			mainVBox.getChildren().clear();
 			mainVBox.getChildren().add(mainMenu);
 			mainVBox.getChildren().addAll(newVBox.getChildren());
+
+		} catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	private synchronized void loadView2(String absoluteName) throws ParseException {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			VBox newVBox = loader.load();
+
+			Scene mainScene = Main.getMainScene();
+			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+
+			Node mainMenu = mainVBox.getChildren().get(0);
+			mainVBox.getChildren().clear();
+			mainVBox.getChildren().add(mainMenu);
+			mainVBox.getChildren().addAll(newVBox.getChildren());
+			
+			UnityListController controller = loader.getController();
+			controller.setUnityService(new UnityService());
+			controller.updateTableView();
 
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
