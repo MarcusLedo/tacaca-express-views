@@ -2,12 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="448.0" prefWidth="593.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<VBox prefHeight="449.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <ImageView disable="true" fitHeight="153.0" fitWidth="222.0" pickOnBounds="true" x="67.0" y="67.0">
+         <image>
+            <Image url="@../../../../BanzeiroSP_Tacacá_Cred-Kato-1.jpg" />
+         </image>
+         <VBox.margin>
+            <Insets right="100.0" />
+         </VBox.margin>
+      </ImageView>
       <Label text="About">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -16,10 +25,16 @@
             <Insets bottom="10.0" left="20.0" top="10.0" />
          </padding>
       </Label>
-      <Label text="JavFX app demo">
+      <Label text="Trabalho apresentado para a disciplina Programação Orientada a Objetos e Laboratório de Bancos de Dados, ministrada pela professora Joyce Siqueira. Autores do trabalho: @stylianoudakis e @MarcusLedo." textAlignment="JUSTIFY" wrapText="true">
          <padding>
             <Insets left="20.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets left="5.0" right="5.0" />
+         </opaqueInsets>
       </Label>
    </children>
 </VBox>

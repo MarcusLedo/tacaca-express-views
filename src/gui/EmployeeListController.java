@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import entities.BusinessUnity;
+import entities.Employee;
 import entities.Unity;
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -26,29 +27,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import services.EmployeeService;
 import services.UnityService;
 
-public class UnityListController implements Initializable{
+public class EmployeeListController implements Initializable{
 	
 	
-	private UnityService service;
-	
-	@FXML
-	private TableView<Unity> tableViewUnity;
+	private EmployeeService service;
 	
 	@FXML
-	private TableColumn<Unity, Integer> tableColumnId;
+	private TableView<Employee> tableViewEmployee;
 	
 	@FXML
-	private TableColumn<Unity, String> tableColumnName;
+	private TableColumn<Employee, Integer> tableColumnId;
+	
+	@FXML
+	private TableColumn<Employee, String> tableColumnName;
 	
 	@FXML
 	private Button btNew;
 	
-	private ObservableList<Unity> obsList;
+	private ObservableList<Employee> obsList;
 	
 	
-	public void setUnityService(UnityService service) {
+	public void setEmployeeService(EmployeeService service) {
 		this.service = service;
 	}
 	
@@ -67,17 +69,17 @@ public class UnityListController implements Initializable{
 
 
 	private void initializeNodes() {
-		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("branch"));
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
-		tableViewUnity.prefHeightProperty().bind(stage.heightProperty());
+		tableViewEmployee.prefHeightProperty().bind(stage.heightProperty());
 	}
 	
 	public void updateTableView() throws ParseException {
-		List<Unity> list = service.findAll();
+		List<Employee> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
-		tableViewUnity.setItems(obsList);
+		tableViewEmployee.setItems(obsList);
 	}
 	
 	private void createDialogForm(Unity obj, String absoluteName, Stage parentStage) {

@@ -14,8 +14,28 @@ public class BusinessUnity extends Unity{
 
 	private Integer size;
 	
-
 	
+	
+	
+	
+	public BusinessUnity() {
+		super();
+	}
+	
+	
+
+
+
+
+	public BusinessUnity(Integer branch, String name) {
+		super(branch, name);
+	}
+
+
+
+
+
+
 	public BusinessUnity(Integer branch, String name, String companiesHouseId, String email, String phone, UnityPremises premises, Integer size) {
 		super(branch, name, companiesHouseId, email, phone, premises);
 		this.size = size;

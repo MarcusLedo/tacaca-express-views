@@ -14,9 +14,11 @@ import entities.UnityPremises;
 public class UnityService {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private List<Unity> unity = new ArrayList<>();
+	
+	private Unity dao = new BusinessUnity();
 	
 	public List<Unity> findAll() throws ParseException{
-		List<Unity> unity = new ArrayList<>();
 		
 		unity.add(new BusinessUnity(1, "Belém", "01492745000114", "r01@tacaca.com.br", "91953059830", new UnityPremises(1, 1, (Date) sdf.parse("27/05/2004"), (Date) sdf.parse("31/12/2100"), "A", new Address("Rua José Fialho", "927", "Nazaré", "Belém", "PA", "66095-225")), 1));
 		unity.add(new BusinessUnity(3, "Santarém", "01492745000330", "r03@tacaca.com.br", "91927934920", new UnityPremises(3, 3, (Date) sdf.parse("04/01/2005"), (Date) sdf.parse("31/12/2100"), "A", new Address("Avenida Belém", "458", "Centro", "Santarém", "PA", "66095-225")), 1));
@@ -30,6 +32,15 @@ public class UnityService {
 		unity.add(new BusinessUnity(10, "Bragança", "01492745001012", "r10@tacaca.com.br", "91912702711", new UnityPremises(11, 10, (Date) sdf.parse("11/06/2007"), (Date) sdf.parse("31/12/2100"), "A", new Address("Avenida Marituba", "891", "Centro", "Bragança", "PA", "66095-010")), 1));
 		
 		return unity;
+	}
+	
+	
+	public List<Unity> getList(){
+		return unity;
+	}
+
+	public void saveOrUpdate(Unity obj) throws ParseException {
+			unity.add(obj);
 	}
 
 }

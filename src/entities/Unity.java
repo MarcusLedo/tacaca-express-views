@@ -31,7 +31,18 @@ public abstract class Unity implements SalaryCost{
 			linha 187 (toString)
 	 */
 	
+	public Unity() {
+		
+	}
 	
+	
+
+	public Unity(Integer branch, String name) {
+		this.branch = branch;
+		this.name = name;
+	}
+
+
 
 	public Unity(Integer branch, String name, String companiesHouseId, String email, String phone,
 			UnityPremises premises) {
